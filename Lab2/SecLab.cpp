@@ -3,7 +3,6 @@
 #include <cmath>
 #include <string>
 
-using namespace std;
 
 class Array
 {
@@ -25,7 +24,7 @@ public:
     Array(const size_type n);
     Array(const Array& arr);
 
-    Array(int mnInd, int mxInd, string name)
+    Array(int mnInd, int mxInd, std::string name)
     {
         maxid = mxInd;
         minid = mnInd;
@@ -95,7 +94,7 @@ public:
         return minid;
     }
 
-    string getName() const
+    std::string getName() const
     {
         return Name;
     }
@@ -112,11 +111,11 @@ public:
     void show() const
     {
         if (Name != "")
-            cout << Name << "= ";
+            std::cout << Name << "= ";
 
         for (int i = 0; i < Count; i++)
-            cout << elems[i] << " ";
-        cout << '\n';
+            std::cout << elems[i] << " ";
+        std::cout << '\n';
     }
 
     void fsort()
@@ -154,7 +153,7 @@ public:
     }
 
 private:
-    string Name;
+    std::string Name;
 
     int minid;
     int maxid;
@@ -169,19 +168,19 @@ private:
 
 class indexhelp
 {
-    string obj;
-    string fault = "wrong index";
+    std::string obj;
+    std::string fault = "wrong index";
 
 public:
 
-    indexhelp(string name)
+    indexhelp(std::string name)
     {
         obj = name;
     }
 
     void show() const
     {
-        cout << obj << " " << fault;
+        std::cout << obj << " " << fault;
     }
 };
 
@@ -250,7 +249,7 @@ void arrsummary(const Array& arr, const double num)
     for (int i = 0; i < size; i++)
         newarr.push_back(arr.begin()[i] + num);
 
-    cout << arr.getName() << "+const= ";
+    std::cout << arr.getName() << "+const= ";
 
     newarr.show();
 }
@@ -264,7 +263,7 @@ void arrdiff(const Array& arr, const double num)
     for (int i = 0; i < size; i++)
         newarr.push_back(arr.begin()[i] - num);
 
-    cout << arr.getName() << "-const= ";
+    std::cout << arr.getName() << "-const= ";
 
     newarr.show();
 
@@ -283,7 +282,7 @@ void arrmulti(const Array& arr, const double num)
             newarr[i] = 0;
     }
 
-    cout << arr.getName() << "*const= ";
+    std::cout << arr.getName() << "*const= ";
 
     newarr.show();
 
@@ -296,7 +295,7 @@ void up(const Array& arr)
 
     newarr.fsort();
 
-    cout << "sort up " << arr.getName() << "= ";
+    std::cout << "sort up " << arr.getName() << "= ";
 
     newarr.show();
 }
@@ -308,7 +307,7 @@ void down(const Array& arr)
 
     newarr.secsort();
 
-    cout << "sort down " << arr.getName() << "= ";
+    std::cout << "sort down " << arr.getName() << "= ";
 
     newarr.show();
 }
@@ -322,7 +321,7 @@ void arrnewsum(const Array& arr1, const Array& arr2)
     for (int i = 0; i < size; i++)
         newarr.push_back(arr1.begin()[i] + arr2.begin()[i]);
 
-    cout << "summa= ";
+    std::cout << "summa= ";
 
     newarr.show();
 }
@@ -336,7 +335,7 @@ void arrnewdif(const Array& arr1, const Array& arr2)
     for (int i = 0; i < size; i++)
         newarr.push_back(arr1.begin()[i] - arr2.begin()[i]);
 
-    cout << "raznost= ";
+    std::cout << "raznost= ";
 
     newarr.show();
 }
@@ -350,7 +349,7 @@ void arrnewmulti(const Array& arr1, const Array& arr2)
     for (int i = 0; i < size; i++)
         newarr.push_back(arr1.begin()[i] * arr2.begin()[i]);
 
-    cout << "proizv= ";
+    std::cout << "proizv= ";
 
     newarr.show();
 }
@@ -373,7 +372,7 @@ void arrnewdiv(const Array& arr1, const Array& arr2)
             throw "delenie na 0";
     }
 
-    cout << "delenie= ";
+    std::cout << "delenie= ";
 
     newarr.show();
 }
@@ -406,7 +405,7 @@ void toohelper(const Array& arr1, const Array& arr2)
     }
     catch (const char* err)
     {
-        cout << err << '\n';
+        std::cout << err << '\n';
     }
 }
 
@@ -468,9 +467,9 @@ void Array::resize(size_type newsize)
         elems = data;
         Size = newsize;
     }
-    catch (bad_alloc& ba)
+    catch (std::bad_alloc& ba)
     {
-        cout << ba.what() << '\n';
+        std::cout << ba.what() << '\n';
     }
 }
 
@@ -491,9 +490,9 @@ Array::Array(const Array& arr)
 
         Count = Size;
     }
-    catch (bad_alloc& ba)
+    catch (std::bad_alloc& ba)
     {
-        cout << ba.what() << '\n';
+        std::cout << ba.what() << '\n';
     }
 }
 
@@ -514,9 +513,9 @@ Array::Array(const size_type n)
         Name = "";
     }
 
-    catch (bad_alloc& ba)
+    catch (std::bad_alloc& ba)
     {
-        cout << ba.what() << '\n';
+        std::cout << ba.what() << '\n';
     }
 }
 
@@ -526,26 +525,26 @@ int main()
 
     double a, num;
 
-    cin >> minid >> maxid;
+    std::cin >> minid >> maxid;
 
     Array arr1(minid, maxid, "Array1");
     Array arr2(minid, maxid, "Array2");
 
     for (int i = minid; i < maxid + 1; i++)
     {
-        cin >> a;
+        std::cin >> a;
 
         arr1.push_back(a);
     }
 
     for (int i = minid; i < maxid + 1; i++)
     {
-        cin >> a;
+        std::cin >> a;
 
         arr2.push_back(a);
     }
 
-    cin >> num;
+    std::cin >> num;
 
     arr1.show();
     helper(arr1, num);
@@ -557,7 +556,7 @@ int main()
 
     while (true)
     {
-        cin >> s;
+        std::cin >> s;
 
         if (s == 0)
         {
@@ -568,32 +567,32 @@ int main()
             switch (s)
             {
             case 1:
-                cin >> a;
+                std::cin >> a;
 
                 try
                 {
-                    cout << arr1.getName() << "[" << a << "]= " << arr1[a] << '\n';
+                    std::cout << arr1.getName() << "[" << a << "]= " << arr1[a] << '\n';
                 }
                 catch (const indexhelp exp)
                 {
                     exp.show();
 
-                    cout << " " << a << '\n';
+                    std::cout << " " << a << '\n';
                 }
 
                 break;
             case 2:
-                cin >> a;
+                std::cin >> a;
 
                 try
                 {
-                    cout << arr2.getName() << "[" << a << "]= " << arr2[a] << '\n';
+                    std::cout << arr2.getName() << "[" << a << "]= " << arr2[a] << '\n';
                 }
                 catch (const indexhelp exp)
                 {
                     exp.show();
 
-                    cout << " " << a << '\n';
+                    std::cout << " " << a << '\n';
                 }
                 break;
             }
